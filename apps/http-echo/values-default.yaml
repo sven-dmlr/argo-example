@@ -1,0 +1,27 @@
+---
+# This chart inherits from the k8s-at-home common library chart. You can check
+# the default values/options here:
+#   https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+# text to send in reply to an HTTP GET
+text: Hello world (values-default.yaml)
+
+controller:
+  # -- Number of desired pods
+  replicas: 1
+  # -- Set the controller upgrade strategy
+  # For Deployments, valid values are Recreate (default) and RollingUpdate.
+  strategy: RollingUpdate
+  rollingUpdate:
+    # -- Set deployment RollingUpdate max unavailable
+    unavailable: "49%"
+    # -- Set deployment RollingUpdate max surge
+    surge: 2
+
+service:
+  main:
+    ports:
+      http:
+        # Port to listen on
+        port: 5678

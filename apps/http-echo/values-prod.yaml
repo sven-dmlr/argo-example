@@ -1,0 +1,5 @@
+# text to send in reply to a HTTP GET
+text: "Hello world (values-prod.yaml)"
+controller:
+  # -- Number of desired pods
+  replicas: 2
