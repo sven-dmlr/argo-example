@@ -1,5 +1,7 @@
 # argo-example
-ArgoCD demo with http-echo Helm chart
+ArgoCD demo with http-echo Helm chart.
+
+For my personal use - may be broken any time...
 
 ## Setup / bootstrap ArgoCD
 ```bash
