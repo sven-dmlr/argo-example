@@ -6,26 +6,20 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    # Helm repository URL
-    repoURL: https://haraldkoch.github.io/helm-charts
-    # Chart name
-    chart: http-echo
-    # Chart version
-    targetRevision: 0.3.4
-    # helm:
-    #   # Inline values
-    #   values: |
-    #     replicaCount: 3
-    #     service:
-    #       type: ClusterIP
-    #     resources:
-    #       requests:
-    #         memory: 128Mi
-    #         cpu: 100m
-    #       limits:
-    #         memory: 256Mi
-    #         cpu: 200m
+  sources:
+    - repoURL: https://haraldkoch.github.io/helm-charts
+      # Chart name
+      chart: http-echo
+      # Chart version
+      targetRevision: 0.3.4
+      helm:
+        valueFiles:
+          # Custom value files from another source
+          - $values/apps/http-echo/values-default.yaml
+          - $values/apps/http-echo/values-prod.yaml
+    - repoURL: https://github.com/sven-dmlr/argo-example.git
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: http-echo
