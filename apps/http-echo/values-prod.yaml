@@ -1,5 +1,5 @@
 # text to send in reply to a HTTP GET
-text: "Hello world (values-prod.yaml)"
+text: "Hello world (values-prod.yaml) Juhuu"
 controller:
   # -- Number of desired pods
   replicas: 3
