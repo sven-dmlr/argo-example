@@ -33,8 +33,27 @@ kubectl port-forward service/argocd-server -n argocd 8080:443
 ARGO_INITIAL_PASSWD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 ```
 
-## Create demo app
-
+## Create demo app via web ui
+Click Applications > Create application and fill in:
+```
+General:
+  Application name = webapp-dev
+  Project name = Default (click)
+  Sync policy = Automatic (choose one)
+    Check "Enable auto-sync"
+    Check "Prune resources"
+  Check "Auto-create namespace"
+Source:
+  Repository url = https://github.com/sven-dmlr/argo-examples.git
+  Revision = master
+  Path = (click) helm-webapp
+Destination:
+  Cluster url = https://kubernetes.default.svc (click)
+  Namespace = webapp-dev
+Helm:
+  Values files = values-dev.yaml (click)
+```
+Then click "Create"
 
 
 
@@ -45,7 +64,7 @@ argocd app create webapp-kustom-dev \
   --repo https://github.com/sven-dmlr/argo-examples.git \
   --path kustom-webapp/overlays/dev \
   --dest-server https://kubernetes.default.svc \
-  --dest-namespace dev-from-kust \
+  --dest-namespace dev-from-cli \
   --sync-policy automated \
   --auto-prune \
   --self-heal \
@@ -55,7 +74,7 @@ argocd app create webapp-kustom-prod \
   --repo https://github.com/sven-dmlr/argo-examples.git \
   --path kustom-webapp/overlays/prod \
   --dest-server https://kubernetes.default.svc \
-  --dest-namespace prod-from-kust \
+  --dest-namespace prod-from-cli \
   --sync-policy automated \
   --auto-prune \
   --self-heal \
