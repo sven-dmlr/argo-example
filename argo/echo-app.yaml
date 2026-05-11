@@ -25,6 +25,7 @@ spec:
     namespace: http-echo
   syncPolicy:
     automated:
+      # enabled: false
       prune: true
       selfHeal: true
     syncOptions:
