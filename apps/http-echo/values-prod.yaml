@@ -2,4 +2,4 @@
 text: "Hello world (values-prod.yaml)"
 controller:
   # -- Number of desired pods
-  replicas: 2
+  replicas: 3
